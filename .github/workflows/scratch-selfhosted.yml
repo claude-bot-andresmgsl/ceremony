@@ -1,0 +1,13 @@
+# Scratch fixture: red-run evidence for actions/runner-isolated (#58).
+# The paths filter never matches, so this workflow never executes; its
+# TEXT alone is the violation the guard must catch — a pull_request
+# trigger and a self-hosted runs-on in one file.
+name: scratch selfhosted
+on:
+  pull_request:
+    paths: ['scratch-never-matches/**']
+jobs:
+  never:
+    runs-on: self-hosted
+    steps:
+      - run: echo never
